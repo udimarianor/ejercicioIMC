@@ -23,7 +23,7 @@ for (var i = 0; i < pacientes.length; i++) {
     }
 
     if (!alturaEsValida) {
-        console.log("Peso incorrecto");
+        console.log("Altura incorrecto");
         tdIMC.textContent = "Altura incorrecta";
         alturaEsValida = false;
         paciente.classList.add("paciente-incorrecto");

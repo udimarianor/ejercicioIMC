@@ -8,8 +8,11 @@ botonAdicionar.addEventListener("click", function (event) {
     var form = document.querySelector("#form-adicionar");
     var paciente = capturarDatosPaciente(form);
     var pacienteTr = crearTR(paciente);
-    if (!validarPaciente(paciente)) {
-        alert("paciente incorrecto");
+
+    var errores = validarPaciente(paciente);
+    if (errores.length > 0) {
+        var mensajeError = document.querySelector("#mensaje-error");
+        mensajeError.textContent = errores;
         return; //este return en el if me CORTA LA FUNCIÓN ANÓNIMA!
     }
 
@@ -59,9 +62,14 @@ function construirTd(dato, clase){
 }
 
 function validarPaciente(paciente){
-    if (validarPeso(paciente.peso)) {
-        return true
-    } else {
-        return false;
+    var errores = [];
+    if (!validarPeso(paciente.peso)) {
+        errores.push("El peso es incorrecto");
     }
+
+    if (!validarAltura(paciente.altura)) {
+        errores.push("La altura es incorrecta");
+    }
+
+    return errores;
 }
