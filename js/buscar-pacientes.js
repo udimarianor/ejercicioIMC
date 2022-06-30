@@ -5,11 +5,19 @@ botonBuscar.addEventListener("click", function(){
     //https://alura-es-cursos.github.io/api-pacientes/pacientes.json
     //uso un objeto XMLHttpRequest (ver)
     var xhr = new XMLHttpRequest;
-    xhr.open("GET", "https://github.com/udimarianor/ejercicioIMC/blob/main/pacientes.json");
+    xhr.open("GET", "https://alura-es-cursos.github.io/api-pacientes/pacientes.json");
     xhr.addEventListener("load", function(){
-        console.log(xhr.responseText);
+        var respuesta = xhr.responseText;
+        //console.log(respuesta);
+        //console.log(typeof(respuesta));
+
+        var pacientes = JSON.parse(respuesta);
+        //console.log(pacientes);
+        //console.log(typeof(pacientes));
+
+        pacientes.forEach(function(paciente){
+            adicionarPaciente(paciente);
+        });
     });
     xhr.send();
-
-
 });
